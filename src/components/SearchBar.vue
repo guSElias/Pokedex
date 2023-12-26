@@ -1,0 +1,32 @@
+<template>
+  <div>
+    <input
+      v-model="searchText"
+      type="text"
+      placeholder="Type a pokemon name"
+      @input="onSearchTextChange"
+    />
+    <h1>{{ searchText }}</h1>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import api from '@/usecases/api'
+
+const searchText = ref('')
+const emit = defineEmits(['found'])
+
+async function onSearchTextChange() {
+  try {
+    
+    const response = await api(searchText.value)
+    const pokemon = response.data;
+    emit('found', pokemon)
+  } catch (error) {
+    emit('found', null)
+  }
+}
+</script>
+
+<style lang="scss" scoped></style>
