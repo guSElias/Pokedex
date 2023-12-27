@@ -12,16 +12,16 @@
 
 <script setup>
 import { ref } from 'vue'
-import api from '@/usecases/api'
+import batata from '@/usecases/api'
 
 const searchText = ref('')
 const emit = defineEmits(['found'])
 
 async function onSearchTextChange() {
   try {
-    
-    const response = await api(searchText.value)
-    const pokemon = response.data;
+    const response = await batata(searchText.value)
+    console.log(response)
+    const pokemon = response.data.sprites.front_default
     emit('found', pokemon)
   } catch (error) {
     emit('found', null)

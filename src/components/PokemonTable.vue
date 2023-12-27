@@ -33,12 +33,11 @@ export default {
       .then((response) => response.json())
       .then((data) => (pokemonList.value = data.results))
 
-    return { pokemonList }
-  },
-  methods: {
-    showInfo() {
-      alert(`${this.pokemon.id} - ${this.pokemon.name}`)
+    const showInfo = () => {
+      alert(`${event.target.innerText}`)
     }
+
+    return { pokemonList, showInfo }
   }
 }
 </script>
