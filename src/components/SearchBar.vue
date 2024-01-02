@@ -12,14 +12,14 @@
 
 <script setup>
 import { ref } from 'vue'
-import batata from '@/usecases/api'
+import searchPokemonByText from '@/usecases/searchPokemonByText'
 
 const searchText = ref('')
 const emit = defineEmits(['found'])
 
 async function onSearchTextChange() {
   try {
-    const response = await batata(searchText.value)
+    const response = await searchPokemonByText(searchText.value)
     console.log(response)
     const pokemon = response.data.sprites.front_default
     emit('found', pokemon)
